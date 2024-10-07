@@ -23,6 +23,8 @@ public:
 
 	CPoint GetTop3() const;
 
+	std::string ToString() const override;
+
 	void Draw(sf::RenderWindow& window) override;
 
 private:

@@ -22,6 +22,16 @@ CPoint CRectangle::GetRightBottom() const
     return m_rightBottom;
 }
 
+std::string CRectangle::ToString() const
+{
+    std::stringstream output;
+
+    output << NAME << std::endl;
+    output << IShape::ToString();
+
+    return output.str();
+}
+
 double CRectangle::GetArea() const
 {
     return GetWidth() * GetHeight();

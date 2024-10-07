@@ -147,6 +147,7 @@
     <ClInclude Include="IShape.h" />
     <ClInclude Include="ShapeControl.h" />
     <ClInclude Include="ShapeCreator.h" />
+    <ClInclude Include="ShapeDecorator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

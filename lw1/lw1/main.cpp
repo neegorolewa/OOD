@@ -14,10 +14,12 @@ int main()
 	std::string trian = "TRIANGLE 100 100 200 200 300 300";
 
 
-	shapeController.ConstructShape(rect);
-	shapeController.ConstructShape(circle);
-	shapeController.ConstructShape(trian);
+	shapeController.ConstructShape(rect, sf::Color::Black);
+	shapeController.ConstructShape(circle, sf::Color::Blue);
+	shapeController.ConstructShape(trian, sf::Color::Green);
 
 	shapeController.DrawShapes();
+
+	shapeController.ToString();
 
 }

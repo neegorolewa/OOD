@@ -21,6 +21,8 @@ public:
 
 	double GetRadius() const;
 
+	std::string ToString() const override;
+
 	void Draw(sf::RenderWindow& window) override;
 
 

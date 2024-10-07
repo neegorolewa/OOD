@@ -25,6 +25,8 @@ public:
 
 	CPoint GetRightBottom() const;
 
+	std::string ToString() const override;
+
 	void Draw(sf::RenderWindow & window) override;
 
 private:

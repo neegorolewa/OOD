@@ -40,6 +40,16 @@ CPoint CTriangle::GetTop3() const
     return m_top3;
 }
 
+std::string CTriangle::ToString() const
+{
+    std::stringstream output;
+
+    output << NAME << std::endl;
+    output << IShape::ToString();
+
+    return output.str();
+}
+
 void CTriangle::Draw(sf::RenderWindow& window)
 {
     sf::ConvexShape triangle;

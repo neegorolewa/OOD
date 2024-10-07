@@ -24,6 +24,16 @@ double CCircle::GetRadius() const
     return m_radius;
 }
 
+std::string CCircle::ToString() const
+{
+    std::stringstream output;
+
+    output << NAME << std::endl;
+    output << IShape::ToString();
+
+    return output.str();
+}
+
 void CCircle::Draw(sf::RenderWindow& window)
 {
     sf::CircleShape circle(m_radius);

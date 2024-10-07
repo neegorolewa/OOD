@@ -1,13 +1,16 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <iostream>
 #include "ShapeCreator.h"
 
 class ShapeControl
 {
 public:
 
-	void ConstructShape(const std::string& line);
+	void ConstructShape(const std::string& line, sf::Color fillColor);
+
+	void ToString() const;
 
 	void DrawShapes();
 

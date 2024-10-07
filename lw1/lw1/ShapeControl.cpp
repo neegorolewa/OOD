@@ -1,10 +1,21 @@
 #include "ShapeControl.h"
+#include "ShapeDecorator.h"
 
-void ShapeControl::ConstructShape(const std::string& line)
+void ShapeControl::ConstructShape(const std::string& line, sf::Color fillColor)
 {
 	std::shared_ptr<IShape> shape = ShapeCreator::CreateShape(line);
 
+	shape = std::make_shared<ShapeDecorator>(shape, fillColor);
+
 	m_shapes.emplace_back(shape);
+}
+
+void ShapeControl::ToString() const
+{
+	for (auto shape : m_shapes)
+	{
+		std::cout << shape->ToString();
+	}
 }
 
 void ShapeControl::DrawShapes()
