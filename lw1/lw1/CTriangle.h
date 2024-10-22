@@ -13,9 +13,9 @@ public:
 		, m_top3(top3)
 	{}
 
-	double GetArea() const override;
+	//double GetArea() const override;
 
-	double GetPerimeter() const override;
+	//double GetPerimeter() const override;
 
 	CPoint GetTop1() const;
 
@@ -25,11 +25,11 @@ public:
 
 	std::string ToString() const override;
 
-	void Draw(sf::RenderWindow& window) override;
+	void Draw(sf::RenderWindow& window) const override;
 
 private:
 
-	double GetSide(const CPoint& top1, const CPoint& top2) const;
+	//double GetSide(const CPoint& top1, const CPoint& top2) const;
 
 	CPoint m_top1, m_top2, m_top3;
 };

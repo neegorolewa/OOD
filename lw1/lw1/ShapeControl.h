@@ -8,11 +8,13 @@ class ShapeControl
 {
 public:
 
-	void ConstructShape(const std::string& line, sf::Color fillColor);
+	//void ConstructShape(const std::string& line);
 
-	void ToString() const;
+	void PrintInfo(const std::string& fileName);
 
 	void DrawShapes();
+
+	void ReadInfo(const std::string& fileName);
 
 private:
 	const int WIDTH_WINDOW = 1000;
@@ -20,5 +22,7 @@ private:
 	const std::string NAME_WINDOW = "window";
 
 	std::vector<std::shared_ptr<IShape>> m_shapes = {};
+
+	std::shared_ptr<IShape> ConstructShape(const std::string& line);
 };
 

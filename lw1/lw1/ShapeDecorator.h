@@ -2,38 +2,27 @@
 #include "IShape.h"
 class ShapeDecorator : public IShape
 {
-	 ShapeDecorator(std::shared_ptr<IShape> shape, sf::Color fillColor)
-        : m_shape(shape)
-        , m_fillColor(fillColor)
+public:
+	 ShapeDecorator(std::shared_ptr<IShape> shape)
+        : m_shape(std::move(shape))
     {}
 
-    double GetArea() const override
-    {
-        return m_shape->GetArea();
-    }
+     double GetArea() const;
 
-    double GetPerimeter() const override
-    {
-        return m_shape->GetPerimeter();
-    }
+     double GetPerimeter() const;
 
-    std::string ToString() const override
-    {
-        return m_shape->ToString();
-    }
+     virtual std::string ToString() const;
 
-    void Draw(sf::RenderWindow& window) override
-    {
-        m_shape->Draw(window);
-    }
-
-    sf::Color GetFillColor() const
-    {
-        return m_fillColor;
-    }
+     void Draw(sf::RenderWindow& window) const;
 
 protected:
+    virtual double CalculatePerimeter() const = 0;
+    virtual double CalculateArea() const = 0;
+    void SetPerimeter();
+    void SetArea();
     std::shared_ptr<IShape> m_shape;
-    sf::Color m_fillColor = sf::Color::Blue;
+
+private:
+    double m_area = 0, m_perimeter = 0;
 };
 

@@ -133,21 +133,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CCircle.cpp" />
+    <ClCompile Include="CCircleMathDecorator.cpp" />
     <ClCompile Include="CRectangle.cpp" />
+    <ClCompile Include="CRectangleMathDecorator.cpp" />
     <ClCompile Include="CTriangle.cpp" />
+    <ClCompile Include="CTriangleMathDecorator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShapeControl.cpp" />
     <ClCompile Include="ShapeCreator.cpp" />
+    <ClCompile Include="ShapeDecorator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCircle.h" />
+    <ClInclude Include="CCircleMathDecorator.h" />
     <ClInclude Include="CPoint.h" />
     <ClInclude Include="CRectangle.h" />
+    <ClInclude Include="CRectangleMathDecorator.h" />
     <ClInclude Include="CTriangle.h" />
+    <ClInclude Include="CTriangleMathDecorator.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="ShapeControl.h" />
     <ClInclude Include="ShapeCreator.h" />
     <ClInclude Include="ShapeDecorator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt" />
+    <Text Include="output.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

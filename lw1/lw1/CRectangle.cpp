@@ -24,25 +24,20 @@ CPoint CRectangle::GetRightBottom() const
 
 std::string CRectangle::ToString() const
 {
-    std::stringstream output;
-
-    output << NAME << std::endl;
-    output << IShape::ToString();
-
-    return output.str();
+    return NAME;
 }
 
-double CRectangle::GetArea() const
-{
-    return GetWidth() * GetHeight();
-}
+//double CRectangle::GetArea() const
+//{
+//    return GetWidth() * GetHeight();
+//}
+//
+//double CRectangle::GetPerimeter() const
+//{
+//    return 2 * (GetWidth() + GetHeight());
+//}
 
-double CRectangle::GetPerimeter() const
-{
-    return 2 * (GetWidth() + GetHeight());
-}
-
-void CRectangle::Draw(sf::RenderWindow& window)
+void CRectangle::Draw(sf::RenderWindow& window) const
 {
     sf::RectangleShape rectangle;
 

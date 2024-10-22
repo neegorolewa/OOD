@@ -13,11 +13,11 @@ public:
 
 private:
 
-	static std::shared_ptr<CRectangle> CreateRectangle(std::istringstream& input);
+	static std::shared_ptr<CRectangle> CreateRectangle(std::string& info);
 
-	static std::shared_ptr<CTriangle> CreateTriangle(std::istringstream& input);
+	static std::shared_ptr<CTriangle> CreateTriangle(std::string& info);
 
-	static std::shared_ptr<CCircle> CreateCircle(std::istringstream& input);
+	static std::shared_ptr<CCircle> CreateCircle(std::string& info);
 
 };
 

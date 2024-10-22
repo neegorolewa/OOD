@@ -4,15 +4,15 @@
 
 const std::string CCircle::NAME = "CIRCLE";
 
-double CCircle::GetArea() const
-{
-    return M_PI * m_radius * m_radius;
-}
-
-double CCircle::GetPerimeter() const
-{
-    return 2 * M_PI * m_radius;
-}
+//double CCircle::GetArea() const
+//{
+//    return M_PI * m_radius * m_radius;
+//}
+//
+//double CCircle::GetPerimeter() const
+//{
+//    return 2 * M_PI * m_radius;
+//}
 
 CPoint CCircle::GetCenter() const
 {
@@ -26,15 +26,10 @@ double CCircle::GetRadius() const
 
 std::string CCircle::ToString() const
 {
-    std::stringstream output;
-
-    output << NAME << std::endl;
-    output << IShape::ToString();
-
-    return output.str();
+    return NAME;
 }
 
-void CCircle::Draw(sf::RenderWindow& window)
+void CCircle::Draw(sf::RenderWindow& window) const
 {
     sf::CircleShape circle(m_radius);
 

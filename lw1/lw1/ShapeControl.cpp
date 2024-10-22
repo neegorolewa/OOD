@@ -1,22 +1,81 @@
 #include "ShapeControl.h"
 #include "ShapeDecorator.h"
+#include "CTriangleMathDecorator.h"
+#include "CRectangleMathDecorator.h"
+#include "CCircleMathDecorator.h"
+#include "fstream"
+#include "regex"
+#include <iostream>
 
-void ShapeControl::ConstructShape(const std::string& line, sf::Color fillColor)
+std::regex pattern(R"(\s*([A-Za-z]+)\s*:\s*(P1\s*=\s*(\d+)\s*,\s*(\d+)\s*;\s*P2\s*=\s*(\d+)\s*,\s*(\d+)\s*(;\s*P3\s*=\s*(\d+)\s*,\s*(\d+))?|C\s*=\s*(\d+)\s*,\s*(\d+)\s*;\s*R\s*=\s*(\d+)))");
+
+void ShapeControl::ReadInfo(const std::string& fileName)
+{
+	std::ifstream input(fileName);
+	if (!input.is_open())
+	{
+		std::cout << "Error input file" << std::endl;
+		return;
+	}
+
+	std::string line;
+	while (std::getline(input, line))
+	{
+		if (line.empty())
+		{
+			continue;
+		}
+
+			std::shared_ptr<IShape> shape = ConstructShape(line);
+
+		if (shape != nullptr)
+		{
+			m_shapes.emplace_back(shape);
+		}
+	}
+}
+
+std::shared_ptr<IShape> ShapeControl::ConstructShape(const std::string& line)
 {
 	std::shared_ptr<IShape> shape = ShapeCreator::CreateShape(line);
 
-	shape = std::make_shared<ShapeDecorator>(shape, fillColor);
-
-	m_shapes.emplace_back(shape);
+	return shape;
 }
 
-void ShapeControl::ToString() const
+
+void ShapeControl::PrintInfo(const std::string& fileName)
 {
-	for (auto shape : m_shapes)
+	std::ofstream output(fileName);
+	if (!output.is_open())
 	{
-		std::cout << shape->ToString();
+		std::cout << "Error output file" << std::endl;
+		return;
 	}
+
+	for (auto& shape : m_shapes)
+	{
+		if (shape->ToString() == CCircle::NAME)
+		{
+			shape = std::make_shared<CCircleMathDecorator>(std::move(shape));
+		}
+		if (shape->ToString() == CRectangle::NAME)
+		{
+			shape = std::make_shared<CRectangleMathDecorator>(std::move(shape));
+		}
+		if (shape->ToString() == CTriangle::NAME)
+		{
+			shape = std::make_shared<CTriangleMathDecorator>(std::move(shape));
+		}
+	}
+
+	for (auto const& shape : m_shapes)
+	{
+		output << shape->ToString() << std::endl;
+	}
+
+	output.close();
 }
+
 
 void ShapeControl::DrawShapes()
 {

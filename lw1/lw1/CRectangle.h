@@ -13,9 +13,9 @@ public:
 		, m_rightBottom(rightBottom)
 	{}
 
-	double GetArea() const override;
+	//double GetArea() const override;
 
-	double GetPerimeter() const override;
+	//double GetPerimeter() const override;
 
 	double GetWidth() const;
 
@@ -27,7 +27,7 @@ public:
 
 	std::string ToString() const override;
 
-	void Draw(sf::RenderWindow & window) override;
+	void Draw(sf::RenderWindow & window) const override;
 
 private:
 	CPoint m_leftTop;

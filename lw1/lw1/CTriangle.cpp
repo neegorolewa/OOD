@@ -3,27 +3,27 @@
 
 const std::string CTriangle::NAME = "TRIANGLE";
 
-double CTriangle::GetSide(const CPoint& top1, const CPoint& top2) const
-{
-    return std::sqrt(std::pow(top1.m_x - top2.m_x, 2) + std::pow(top1.m_y - top2.m_y, 2));
-}
+//double CTriangle::GetSide(const CPoint& top1, const CPoint& top2) const
+//{
+//    return std::sqrt(std::pow(top1.m_x - top2.m_x, 2) + std::pow(top1.m_y - top2.m_y, 2));
+//}
 
-double CTriangle::GetArea() const
-{
-    return 0.5 * abs(
-        (m_top2.m_x - m_top1.m_x) *
-        (m_top3.m_y - m_top1.m_y) -
-        (m_top3.m_x - m_top1.m_x) *
-        (m_top2.m_y - m_top1.m_y)
-    );
-}
-
-double CTriangle::GetPerimeter() const
-{
-    return CTriangle::GetSide(m_top1, m_top2) + 
-        CTriangle::GetSide(m_top2, m_top3) + 
-        CTriangle::GetSide(m_top3, m_top1);
-}
+//double CTriangle::GetArea() const
+//{
+//    return 0.5 * abs(
+//        (m_top2.m_x - m_top1.m_x) *
+//        (m_top3.m_y - m_top1.m_y) -
+//        (m_top3.m_x - m_top1.m_x) *
+//        (m_top2.m_y - m_top1.m_y)
+//    );
+//}
+//
+//double CTriangle::GetPerimeter() const
+//{
+//    return CTriangle::GetSide(m_top1, m_top2) + 
+//        CTriangle::GetSide(m_top2, m_top3) + 
+//        CTriangle::GetSide(m_top3, m_top1);
+//}
 
 CPoint CTriangle::GetTop1() const
 {
@@ -42,15 +42,10 @@ CPoint CTriangle::GetTop3() const
 
 std::string CTriangle::ToString() const
 {
-    std::stringstream output;
-
-    output << NAME << std::endl;
-    output << IShape::ToString();
-
-    return output.str();
+    return NAME;
 }
 
-void CTriangle::Draw(sf::RenderWindow& window)
+void CTriangle::Draw(sf::RenderWindow& window) const
 {
     sf::ConvexShape triangle;
 

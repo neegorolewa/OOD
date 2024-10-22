@@ -13,9 +13,9 @@ public:
 		,m_radius(radius)
 	{}
 
-	double GetArea() const override;
+	/*double GetArea() const override;
 
-	double GetPerimeter() const override;
+	double GetPerimeter() const override;*/
 
 	CPoint GetCenter() const;
 
@@ -23,7 +23,7 @@ public:
 
 	std::string ToString() const override;
 
-	void Draw(sf::RenderWindow& window) override;
+	void Draw(sf::RenderWindow& window) const  override;
 
 
 private:
