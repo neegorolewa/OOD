@@ -13,9 +13,15 @@ public:
 		, m_top3(top3)
 	{}
 
-	//double GetArea() const override;
-
-	//double GetPerimeter() const override;
+	bool ContainsPoint(const sf::Vector2f& point) const override;
+	
+	void DrawSelection(sf::RenderWindow& window) const override;
+	
+	void SetSelected(bool selected) override;
+	
+	bool IsSelected() const override;
+	
+	void Move(const sf::Vector2f& offset) override;
 
 	CPoint GetTop1() const;
 
@@ -29,8 +35,8 @@ public:
 
 private:
 
-	//double GetSide(const CPoint& top1, const CPoint& top2) const;
-
 	CPoint m_top1, m_top2, m_top3;
+
+	bool m_selected = false;
 };
 

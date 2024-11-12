@@ -1,14 +1,21 @@
 #pragma once
-#include <vector>
-#include <memory>
-#include <iostream>
+#include "CCircleMathDecorator.h"
+#include "CRectangleMathDecorator.h"
+#include "CShapeComposite.h"
+#include "CTriangleMathDecorator.h"
+#include "fstream"
+#include "regex"
+#include "ShapeControl.h"
 #include "ShapeCreator.h"
+#include "ShapeDecorator.h"
+#include <iostream>
+#include <iostream>
+#include <memory>
+#include <vector>
 
 class ShapeControl
 {
 public:
-
-	//void ConstructShape(const std::string& line);
 
 	void PrintInfo(const std::string& fileName);
 
