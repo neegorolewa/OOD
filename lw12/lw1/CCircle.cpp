@@ -6,10 +6,13 @@ const std::string CCircle::NAME = "CIRCLE";
 
 bool CCircle::ContainsPoint(const sf::Vector2f& point) const
 {
-    float dx = point.x - m_center.m_x;
-    float dy = point.y - m_center.m_y;
+    sf::CircleShape circle;
+    circle.setRadius(m_radius);
+    circle.setPosition(m_center.m_x, m_center.m_y);
 
-    return (dx * dx + dy * dy) <= m_radius * m_radius;
+    sf::FloatRect bounds = circle.getGlobalBounds();
+
+    return bounds.contains(point);
 }
 
 void CCircle::DrawSelection(sf::RenderWindow& window) const

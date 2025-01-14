@@ -84,7 +84,8 @@ void ShapeControl::DrawShapes()
             {
                 window.close();
             }
-            else if (event.type == sf::Event::MouseButtonPressed)
+
+            if (event.type == sf::Event::MouseButtonPressed)
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
@@ -114,14 +115,16 @@ void ShapeControl::DrawShapes()
                     }
                 }
             }
-            else if (event.type == sf::Event::MouseButtonReleased)
+
+            if (event.type == sf::Event::MouseButtonReleased)
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     isDragging = false;
                 }
             }
-            else if (event.type == sf::Event::MouseMoved)
+
+            if (event.type == sf::Event::MouseMoved)
             {
                 if (isDragging)
                 {
@@ -137,44 +140,86 @@ void ShapeControl::DrawShapes()
                     dragStart = mousePos;
                 }
             }
-            else if (event.type == sf::Event::KeyPressed)
+
+            if (event.type == sf::Event::KeyPressed)
             {
                 if (event.key.code == sf::Keyboard::G && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
                 {
-                    std::cout << "Grouping selected shapes..." << std::endl;
+                    auto composite = std::make_shared<CShapeComposite>();
                     for (auto& shape : m_shapes)
                     {
-                        if (auto composite = std::dynamic_pointer_cast<CShapeComposite>(shape); composite)
+                        if (shape->IsSelected())
                         {
-                            composite->GroupSelected();
+                            composite->Add(shape);
+                            std::cout << "Group selected" << std::endl;
                         }
                     }
+
+                    m_shapes.erase(std::remove_if(m_shapes.begin(), m_shapes.end(),
+                        [](const std::shared_ptr<IShape>& shape) { return shape->IsSelected(); }),
+                        m_shapes.end());
+
+                    m_shapes.push_back(composite);
                 }
-                else if (event.key.code == sf::Keyboard::U && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+
+                if (event.key.code == sf::Keyboard::U && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
                 {
-                    std::cout << "Ungrouping selected shapes..." << std::endl;
+                    std::vector<std::shared_ptr<IShape>> newShapes;
                     for (auto& shape : m_shapes)
                     {
-                        if (auto composite = std::dynamic_pointer_cast<CShapeComposite>(shape); composite)
+                        if (auto composite = std::dynamic_pointer_cast<CShapeComposite>(shape))
                         {
-                            composite->UngroupSelected();
+                            bool hasSelected = false;
+                            for (auto& s : composite->GetShapes())
+                            {
+                                if (s->IsSelected())
+                                {
+                                    hasSelected = true;
+                                    break;
+                                }
+                            }
+
+                            if (hasSelected)
+                            {
+                                for (auto& s : composite->GetShapes())
+                                {
+                                    if (s->IsSelected())
+                                    {
+                                        newShapes.push_back(s);
+                                    }
+                                    else
+                                    {
+                                        newShapes.push_back(s);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                newShapes.push_back(composite);
+                            }
+                        }
+                        else
+                        {
+                            newShapes.push_back(shape);
                         }
                     }
+
+                    m_shapes = newShapes;
                 }
             }
-        }
 
-        window.clear(sf::Color::White);
+            window.clear(sf::Color::White);
 
-        for (auto const& shape : m_shapes)
-        {
-            shape->Draw(window);
-            if (shape->IsSelected())
+            for (auto const& shape : m_shapes)
             {
-                shape->DrawSelection(window);
+                shape->Draw(window);
+                if (shape->IsSelected())
+                {
+                    shape->DrawSelection(window);
+                }
             }
-        }
 
-        window.display();
+            window.display();
+        }
     }
 }

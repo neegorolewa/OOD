@@ -16,6 +16,8 @@ public:
 
     //---------------------------------------------------//
 
+    std::vector<std::shared_ptr<IShape>> GetShapes() const;
+
     virtual bool ContainsPoint(const sf::Vector2f& point) const override;
 
     virtual void DrawSelection(sf::RenderWindow& window) const override;

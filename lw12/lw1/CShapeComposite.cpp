@@ -27,6 +27,11 @@ CShapeComposite::CShapeComposite(const CShapeComposite& other)
     }
 }
 
+std::vector<std::shared_ptr<IShape>> CShapeComposite::GetShapes() const
+{
+    return m_figures;
+}
+
 bool CShapeComposite::ContainsPoint(const sf::Vector2f& point) const
 {
     for (const auto& shape : m_figures)
